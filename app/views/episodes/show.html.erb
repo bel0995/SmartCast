@@ -1,0 +1,74 @@
+<% provide(:name, @episode.name) %>
+
+
+<div id="podcast_show">
+  <div id="show_banner">
+    <div class="wrapper_skinny">
+      <h1><%= @episode.name %></h1>
+    </div>
+      <p class="description"><%= @episode.description %></p>
+   
+          
+    <div class="wrapper_skinny" align = "center" >
+      <%= image_tag @episode.image.url(:medium), class: "current_episode_thumbnail" %>
+      
+  
+ 
+    </div>
+    </div>
+  </div>
+  <div align="center">
+    
+    <a href="#">Play Audio</a>
+    <div>
+
+    <%= mp3_player @episode.mp3.url%>
+        
+     <p class="description" align = "center" >This episode has <%= @episode.votes.where(:value => 1).count %> likes and <%= @episode.votes.where(:value => -1).count %> dislikes</p>
+ 
+  <div align="center">
+      <%= link_to "Like",   vote_episode_path(@episode, type: "upvote", v: 1), method: :put, class: 'button button-highlight' %>
+      
+        <%= link_to "Dislike",   vote_episode_path(@episode, type: "downvote", v: -1 ), method: :put, class: 'button button-highlight' %>
+  </div>
+
+  </div>
+<hr align=”left” size=”1″ width=”300″ color=”blak” noshade>
+
+<div align= "center"><%= render @comments %></div>
+</div>
+ <h1 align="center">
+  <% if !current_user.admin?  %>
+<%= link_to "Add comment", new_podcast_episode_comment_path(@podcast, @episode), class: "button button-highlight" %>
+<% end%>
+</h1>
+
+
+<% if current_user == @podcast.artist %>
+<% if !current_user.admin? %>
+                  <td>
+                      <%= link_to "Edit", edit_episode_path(@episode), class: "button button-highlight" %>
+                  </td>
+                  <%end%>
+                  <%end%>
+                  <% if current_user.admin? ||  current_user == @podcast.artist %>
+                  <td>
+                      <%= link_to "Delete", @episode, method: :delete,
+                                  data: { confirm: "You sure?" }, class: "button button-highlight" %>
+                  </td>
+
+    <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

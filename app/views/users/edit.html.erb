@@ -1,0 +1,30 @@
+<div class="banner show-podcast-banner" align="center">
+  
+  <h1 align="center"><%= @user.username %></h1>
+  <div class="pod-description">
+        <p class="col-large"><%= @user.email %></p>
+  </div>
+  
+</div>
+
+      
+
+
+    <%= form_for(@user, url: user_path) do |f| %>
+
+      <p align= "center"><%= f.label :username %>
+      <%= f.text_field :username, placeholder: "Insert your name", class: "border-animation"  %></p>
+
+      <p align= "center"><%= f.label :password %>
+      <%= f.password_field :password, placeholder: "Insert new password", class: "border-animation"  %>
+
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation, placeholder: "Insert new password", class: "border-animation"  %></p>
+
+        <p align="center">
+
+           <%= f.submit "Save changes", class: "button button-highlight" %>
+    </p>
+    <% end %>
+  

@@ -1,0 +1,32 @@
+
+
+<%= form_for ([@podcast, @episode] )do |f| %>
+	
+	
+	<div id="image-upload">
+		<p><%= f.label :image %>
+    <%= f.file_field :image %></p>
+    <!--<label for="image" class="inputfile-label">Choose a file</label>-->
+  	</div>
+
+	<div id="title">
+		
+		<%= f.text_field :name, placeholder: "Insert Episode title",class: "border-animation"%>
+	</div>
+
+	<div id="description" >
+		
+		<%= f.text_area :description ,placeholder: "Insert Episode description",class: "border-animation"%>
+	</div>
+
+	
+
+	<div id="episode-upload">
+		<p><%= f.label :mp3 %>
+		<%= f.file_field :mp3 %></p>
+	</div>
+
+<div align= "center">
+<%= f.submit class: "button button-highlight"%>
+</div>
+<% end %>

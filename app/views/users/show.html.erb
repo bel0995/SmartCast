@@ -1,0 +1,36 @@
+<div class="banner show-podcast-banner" align="center">
+  
+  <h1 align="center"><%= @user.username %></h1>
+  <div class="pod-description">
+        <p class="col-large"><%= @user.email %></p>
+  </div>
+  
+</div>
+
+      
+
+
+
+
+
+<div id="podcasts" class="cf">
+  <div class="wrapper">
+    <ul class="cf">
+      
+
+<%for pod in @user.podcasts %>
+        <%= link_to(pod) do %>
+          <li>
+            <%= image_tag pod.image.url, alt: "Podcast image" %>
+            <div class="podcast-overview">
+              <h2><%= pod.name %></h2>
+              <p class="episode-count"><%= pod.episodes.count %> episodes</p>
+            </div>
+          </li>
+        <% end %>
+        <% end %>
+      </ul>
+  </div>
+</div>
+
+

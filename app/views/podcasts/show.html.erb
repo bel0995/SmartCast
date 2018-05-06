@@ -1,0 +1,60 @@
+<div class="banner show-podcast-banner">
+  <%= image_tag @podcast.image.url, alt: "podcast-thumbnail" %>
+  <h1><%= @podcast.name %></h1>
+  <div class="pod-description">
+    <table>
+      <td>
+        <p class="col-large"><%= @podcast.description %></p>
+      </td>
+      
+      <td class="col-medium"><%= link_to @artist.username, user_path(@artist) %></td>
+      <% if current_user == @podcast.artist%>
+      <td class="col-medium"><%= link_to "Edit Podcast", edit_podcast_path%></td>
+      <%end%>
+       <% if current_user.admin? or current_user == @podcast.artist%>
+      <td class="col-medium"><%= link_to "Delete", @podcast, method: :delete,
+                                  data: { confirm: "You sure?" } %></td>
+        
+      <%end%>
+    </table>
+  </div>
+</div>
+
+
+
+<div id="podcasts" class="cf">
+  <div class="wrapper">
+    <ul class="cf">
+      
+
+<%for pod in @podcast.episodes %>
+        <%= link_to podcast_episode_path(@podcast, pod) do %>
+          <li>
+            <%= image_tag pod.image.url, alt: "Episode image" %>
+            <div class="podcast-overview">
+              <h2><%= pod.name %></h2>
+              
+            </div>
+          </li>
+        <% end %>
+        <% end %>
+      </ul>
+  </div>
+</div>
+
+
+
+
+
+ <% if current_user == @podcast.artist%>
+  <% if !current_user.admin?  %>
+  <%= link_to "Add episode", new_podcast_episode_path(@podcast), class: "button button-highlight" %>
+<% end %>
+<%end%>
+
+</div>
+
+
+
+
+

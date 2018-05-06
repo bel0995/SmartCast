@@ -1,0 +1,13 @@
+<div id="background" class="wrapper-skinny">
+	<div id="home-content">
+		<h1>SmartCast</h1>
+	
+		<div id="welcome-buttons-bar">
+			
+			 <% if !user_signed_in? || current_user.type == 'Artist' %>
+			<%= link_to t("create"), new_podcast_path, class: "button button-highlight" %>
+			<% end %>
+			<%= link_to t("explore"),podcasts_path , class: "button button-highlight" %>
+		</div>
+	</div>
+</div>

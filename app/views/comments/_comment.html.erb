@@ -1,0 +1,16 @@
+<h2><li id="comment<%= comment.id %>">
+  <span class="content"><%= comment.content %></span></h2>
+  <div ><span class="timestamp">
+    Posted <%= time_ago_in_words(comment.created_at) %> ago by <%=link_to comment.user.username, user_path(comment.user) %>.</div>
+<% if current_user.admin? ||  current_user == @podcast.artist %>
+<%= link_to "Delete", comment, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+<%end%>
+
+<% if current_user == @podcast.artist %>
+<% if !current_user.admin? %>
+<%= link_to "Edit", edit_comment_path(comment) %>
+<%end%>
+<% end%>
+  </span>
+</li>

@@ -1,0 +1,14 @@
+<%= form_for ([@episode, @comment]) do |f| %>
+	
+
+	<div id="description" >
+		<%= f.label :content %><br>
+		<%= f.text_area :content, class: "border-animation" %>
+	</div>
+
+<div align= "center">
+	<div class="btn-bar">
+	<%= f.submit class: "button button-highlight"%>
+	</div>
+</div>
+<% end %>
